@@ -1,3 +1,4 @@
+import { router } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
 import {
   ActivityIndicator,
@@ -66,9 +67,11 @@ export default function AuthScreen() {
       Animated.timing(scale, { toValue: 0.96, duration: 90, useNativeDriver: true }),
       Animated.timing(scale, { toValue: 1, duration: 120, useNativeDriver: true }),
     ]).start();
+
     fetchCat();
 
     // Simple validation and mock login
+    router.replace('/(main)/DashboardScreen')
     if (!email || !password) {
       Alert.alert('Missing fields', 'Please enter email and password.');
       return;

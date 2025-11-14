@@ -1,4 +1,5 @@
 import { Fontisto, Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import {
     Dimensions,
     FlatList,
@@ -59,8 +60,10 @@ export default function DashboardScreen() {
           <Text style={styles.title}>Your Cloud Files</Text>
         </View>
         <View style={{flexDirection:'row', gap: 20}}>
-            <Fontisto name="circle-o-notch" color="#000" size={24} />        
+            <Fontisto name="circle-o-notch" color="#000" size={24} /> 
+            <TouchableOpacity onPress={()=>router.push('/ScannerScreen')}>       
           <Ionicons name="scan-sharp" color="#000" size={24} />
+          </TouchableOpacity>
         </View>
         </View>
         {/* SEARCH */}
@@ -77,7 +80,8 @@ export default function DashboardScreen() {
 
         {/* QUICK ACTIONS */}
         <View style={styles.actionsRow}>
-          <TouchableOpacity style={styles.actionCard} activeOpacity={0.8}>
+          <TouchableOpacity style={styles.actionCard}
+          onPress={()=>router.push('/UploadScreen')} activeOpacity={0.8}>
             <View style={styles.actionInner}>
               <Ionicons name="cloud-upload-outline" size={20} color={COLORS.cream} />
               <Text style={styles.actionText}>Upload File</Text>
@@ -103,7 +107,7 @@ export default function DashboardScreen() {
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.foldersList}
           renderItem={({ item }) => (
-            <TouchableOpacity style={styles.folderCard} activeOpacity={0.85}>
+            <TouchableOpacity style={styles.folderCard} activeOpacity={0.85} onPress={()=>router.push('/FileListScreen')}>
               <Ionicons name={item.icon === 'layers' ? 'layers-outline' : 'folder-outline'} size={20} color={COLORS.dark} />
               <Text style={styles.folderText} numberOfLines={1}>{item.name}</Text>
             </TouchableOpacity>
@@ -132,7 +136,7 @@ export default function DashboardScreen() {
                   <Text style={styles.fileTime}>{item.time}</Text>
                 </View>
               </View>
-              <TouchableOpacity style={styles.moreButton}>
+              <TouchableOpacity style={styles.moreButton} >
                 <Ionicons name="ellipsis-vertical" size={18} color={COLORS.soft} />
               </TouchableOpacity>
             </View>
