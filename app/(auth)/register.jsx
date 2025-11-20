@@ -56,11 +56,11 @@ export default function RegisterScreen({ navigation }) {
     return Object.keys(e).length === 0;
   }
 
-  function onSubmit() {
-    if (!validate()) return;
+  function  onSubmit() {
+    // if (!validate()) return;
     // Mock register
     Alert.alert('Registered', `Welcome ${firstName} — registration successful (mock).`, [
-      { text: 'OK', onPress: () => navigation?.navigate?.('Home') },
+      { text: 'OK', onPress: () => router.push('/otp') },
     ]);
   }
 

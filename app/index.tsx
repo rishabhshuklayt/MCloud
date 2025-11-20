@@ -71,7 +71,7 @@ export default function AuthScreen() {
     fetchCat();
 
     // Simple validation and mock login
-    router.replace('/(main)/DashboardScreen')
+    router.push('/(main)/DashboardScreen')
     if (!email || !password) {
       Alert.alert('Missing fields', 'Please enter email and password.');
       return;
