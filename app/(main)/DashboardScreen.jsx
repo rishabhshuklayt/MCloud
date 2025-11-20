@@ -56,7 +56,7 @@ export default function DashboardScreen() {
         {/* HEADER */}
         <View style={{flexDirection:'row', justifyContent:'space-between'}}>
         <View style={styles.headerRow}>
-          <Text style={styles.greeting}>Hello Rishabh <Text style={styles.wave}>👋</Text></Text>
+          <Text style={styles.greeting}>Hello User <Text style={styles.wave}>👋</Text></Text>
           <Text style={styles.title}>Your MCloud Files</Text>
         </View>
         <View style={{flexDirection:'row', gap: 20}}>

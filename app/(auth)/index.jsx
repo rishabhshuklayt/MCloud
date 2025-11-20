@@ -121,9 +121,9 @@ export default function AuthScreen() {
 							</TouchableOpacity>
 						</Animated.View>
 
-						{/* <TouchableOpacity onPress={() => { fetchQuote(); fetchCat(); }} style={styles.secondary}>
-							<Text style={styles.secondaryText}>Refresh quote & cat</Text>
-						</TouchableOpacity> */}
+						<Text>
+							Hi
+						</Text>
 						
 					</View>
 

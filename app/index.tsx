@@ -127,6 +127,9 @@ export default function AuthScreen() {
             <TouchableOpacity onPress={() => { fetchQuote(); fetchCat(); }} style={styles.secondary}>
               <Text style={styles.secondaryText}>Refresh quote & cat</Text>
             </TouchableOpacity>
+            <TouchableOpacity onPress={() => { router.push('./(auth)/register')}} style={styles.secondary}>
+              <Text style={styles.secondaryText}>Refresh quote & cat</Text>
+            </TouchableOpacity>
           </View>
 
               <View style={styles.quoteBox}>

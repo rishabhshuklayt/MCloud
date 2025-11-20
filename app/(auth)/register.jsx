@@ -1,24 +1,18 @@
 import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import { useState } from 'react';
 import {
-    Alert,
-    KeyboardAvoidingView,
-    Platform,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
-const COLORS = {
-  dark: '#29190e',
-  deep: '#523a28',
-  mid: '#a47551',
-  soft: '#d0b49f',
-  cream: '#e4d4c8',
-};
+import COLORS from '../constants/colors';
 
 export default function RegisterScreen({ navigation }) {
   const [firstName, setFirstName] = useState('');
@@ -35,19 +29,25 @@ export default function RegisterScreen({ navigation }) {
 
   function validate() {
     const e = {};
+    const nameRe = /^[A-Za-z\s]+$/; // letters and spaces only
     if (!firstName.trim()) e.firstName = 'Enter first name';
+    else if (!nameRe.test(firstName.trim())) e.firstName = 'First name can only contain letters and spaces';
     if (!lastName.trim()) e.lastName = 'Enter last name';
+    else if (!nameRe.test(lastName.trim())) e.lastName = 'Last name can only contain letters and spaces';
 
     const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email.trim()) e.email = 'Enter email';
     else if (!emailRe.test(email)) e.email = 'Invalid email';
 
-    const phoneRe = /^[+]?\d{7,15}$/; // simple international-ish
-    if (!phone.trim()) e.phone = 'Enter phone number';
-    else if (!phoneRe.test(phone.replace(/\s+/g, ''))) e.phone = 'Invalid phone';
+    // phone is optional; if provided must be 10 digits
+    if (phone.trim()) {
+      const phoneDigits = phone.replace(/\D/g, '');
+      if (!/^\d{10}$/.test(phoneDigits)) e.phone = 'Phone must be 10 digits';
+    }
 
     if (!password) e.password = 'Enter password';
     else if (password.length < 8) e.password = 'Password must be at least 8 characters';
+    else if (!/(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}/.test(password)) e.password = 'Password must include letters and numbers';
 
     if (!confirm) e.confirm = 'Confirm password';
     else if (confirm !== password) e.confirm = 'Passwords do not match';
@@ -167,7 +167,7 @@ export default function RegisterScreen({ navigation }) {
 
           <View style={styles.rowCenter}>
             <Text style={styles.small}>Already have an account?</Text>
-            <TouchableOpacity onPress={() => navigation?.goBack?.()}>
+            <TouchableOpacity onPress={() => router?.goBack?.()}>
               <Text style={styles.link}> Sign in</Text>
             </TouchableOpacity>
           </View>
@@ -178,19 +178,19 @@ export default function RegisterScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: COLORS.cream },
+  safe: { flex: 1, backgroundColor: COLORS.dark },
   container: { flex: 1, padding: 20, justifyContent: 'center' },
-  brand: { color: COLORS.dark, fontSize: 28, fontWeight: '700' },
-  subtitle: { color: COLORS.soft, marginTop: 6, marginBottom: 16 },
+  brand: { color: COLORS.pale, fontSize: 28, fontWeight: '700' },
+  subtitle: { color: COLORS.light, marginTop: 6, marginBottom: 18 },
   form: { backgroundColor: 'transparent' },
-  label: { color: COLORS.dark, fontSize: 12, marginBottom: 6 },
-  input: { color: COLORS.dark, paddingVertical: 10, borderBottomWidth: 1, borderColor: 'rgba(228,212,200,0.18)', fontSize: 16 },
+  label: { color: COLORS.pale, fontSize: 12, marginBottom: 6 },
+  input: { color: COLORS.pale, paddingVertical: 12, borderBottomWidth: 1, borderColor: 'rgba(228,212,200,0.14)', fontSize: 16 },
   passwordRow: { flexDirection: 'row', alignItems: 'center' },
   eyeBtn: { padding: 8, marginLeft: 8 },
-  registerBtn: { marginTop: 20, backgroundColor: COLORS.mid, paddingVertical: 14, borderRadius: 14, alignItems: 'center' },
-  registerTxt: { color: COLORS.cream, fontWeight: '700' },
-  small: { color: COLORS.soft, marginTop: 12 },
-  link: { color: COLORS.deep, fontWeight: '700', marginTop: 12 },
+  registerBtn: { marginTop: 22, backgroundColor: COLORS.mid, paddingVertical: 14, borderRadius: 16, alignItems: 'center', shadowColor: '#000', shadowOpacity: 0.12, shadowRadius: 12, elevation: 4 },
+  registerTxt: { color: COLORS.dark, fontWeight: '800' },
+  small: { color: COLORS.light, marginTop: 12 },
+  link: { color: COLORS.pale, fontWeight: '700', marginTop: 12 },
   rowCenter: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center' },
   error: { color: '#ff6b6b', marginTop: 6, fontSize: 12 },
 });
