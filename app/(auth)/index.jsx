@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 import {
-    ActivityIndicator,
-    Alert,
-    Animated,
-    Image,
-    KeyboardAvoidingView,
-    Platform,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+	ActivityIndicator,
+	Alert,
+	Animated,
+	Image,
+	KeyboardAvoidingView,
+	Platform,
+	StyleSheet,
+	Text,
+	TextInput,
+	TouchableOpacity,
+	View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 // Color theme (user-provided)
@@ -121,9 +121,10 @@ export default function AuthScreen() {
 							</TouchableOpacity>
 						</Animated.View>
 
-						<TouchableOpacity onPress={() => { fetchQuote(); fetchCat(); }} style={styles.secondary}>
+						{/* <TouchableOpacity onPress={() => { fetchQuote(); fetchCat(); }} style={styles.secondary}>
 							<Text style={styles.secondaryText}>Refresh quote & cat</Text>
-						</TouchableOpacity>
+						</TouchableOpacity> */}
+						
 					</View>
 
 							<View style={styles.quoteBox}>

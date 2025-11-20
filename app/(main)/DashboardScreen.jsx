@@ -1,15 +1,15 @@
 import { Fontisto, Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import {
-    Dimensions,
-    FlatList,
-    Platform,
-    // SafeAreaView,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View
+  Dimensions,
+  FlatList,
+  Platform,
+  // SafeAreaView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -57,7 +57,7 @@ export default function DashboardScreen() {
         <View style={{flexDirection:'row', justifyContent:'space-between'}}>
         <View style={styles.headerRow}>
           <Text style={styles.greeting}>Hello Rishabh <Text style={styles.wave}>👋</Text></Text>
-          <Text style={styles.title}>Your Cloud Files</Text>
+          <Text style={styles.title}>Your MCloud Files</Text>
         </View>
         <View style={{flexDirection:'row', gap: 20}}>
             <Fontisto name="circle-o-notch" color="#000" size={24} /> 
